@@ -6,7 +6,7 @@ export default function PlanTree({ id, placesById }) {
   return (
     <>
       <li>
-        {place.title}
+        {place.title} <button>Complete</button>
         {childIds.length > 0 && (
           <ol>
             {childIds.map((id) => (
