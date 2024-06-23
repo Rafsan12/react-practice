@@ -8,12 +8,33 @@ export default function Travel() {
 
   const plantesId = root.childIds;
 
+  const handleComplete = (parentId, childId) => {
+    console.log("Hello");
+    const parent = plan[parentId];
+
+    const nextParent = {
+      ...parent,
+      childIds: parent.childIds.filter((id) => id !== childId),
+    };
+
+    setPlan({
+      ...plan,
+      [parentId]: nextParent,
+    });
+  };
+
   return (
     <>
       <h2>Places to visit</h2>
       <ol>
         {plantesId.map((placeID) => (
-          <PlanTree key={placeID} id={placeID} placesById={plan} />
+          <PlanTree
+            key={placeID}
+            id={placeID}
+            placesById={plan}
+            onComplete={handleComplete}
+            parentId={0}
+          />
         ))}
       </ol>
     </>
